@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Game Plan - Your Ultimate Sports Management Platform</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+
+    <style>
+        :root {
+            --primary-dark: #0B2447;
+            --primary-medium: #19376D;
+            --primary-light: #576CBC;
+            --accent-light: #A5D7E8;
+            --text-light: #E6F4F1;
+            --spacing-xs: 0.5rem;
+            --spacing-sm: 1rem;
+            --spacing-md: 1.5rem;
+            --spacing-lg: 2rem;
+            --spacing-xl: 3rem;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, var(--primary-dark), var(--primary-medium), var(--primary-light));
+            color: var(--text-light);
+            line-height: 1.6;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 var(--spacing-md);
+            width: 100%;
+        }
+
+        /* Header Styles */
+        header {
+            background: rgba(11, 36, 71, 0.3);
+            backdrop-filter: blur(10px);
+            padding: var(--spacing-md) 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            flex-direction: column;
+            gap: 0px;
+        }
+
+        .logo h1 {
+            font-size: 2.8rem;
+            color: var(--accent-light);
+            text-shadow: 2px 2px 10px rgba(165, 215, 232, 0.5);
+            font-weight: 700;
+            letter-spacing: 1px;
+        }
+
+        .tagline {
+            font-size: 1rem;
+            color: var(--text-light);
+            margin-left: 0px;
+            margin-top: 0px;
+            padding-left: 15px;
+            font-weight: 300;
+            letter-spacing: 1.5px;
+        }
+
+        nav {
+            display: flex;
+            gap: var(--spacing-md);
+        }
+
+        .nav-btn {
+            padding: 0.8rem 1.5rem;
+            background: linear-gradient(90deg, var(--primary-light), var(--primary-medium));
+            color: white;
+            text-decoration: none;
+            border-radius: 25px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .nav-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            background: linear-gradient(90deg, var(--primary-medium), var(--primary-light));
+        }
+
+        /* Main Content Styles */
+        main {
+            margin-top: 100px;
+            flex: 1;
+            padding: var(--spacing-xl) 0;
+        }
+
+        .hero {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: var(--spacing-xl);
+            margin-bottom: var(--spacing-xl);
+            text-align: center;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+        }
+
+        .hero h2 {
+            font-size: 2.5rem;
+            color: var(--accent-light);
+            margin-bottom: var(--spacing-md);
+            font-weight: 600;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto;
+            line-height: 1.8;
+            color: var(--text-light);
+        }
+
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: var(--spacing-lg);
+            padding: var(--spacing-lg) 0;
+        }
+
+        .feature-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: var(--spacing-lg);
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .feature-card h3 {
+            color: var(--accent-light);
+            font-size: 1.5rem;
+            margin-bottom: var(--spacing-md);
+            font-weight: 600;
+        }
+
+        .feature-card p {
+            font-size: 1.1rem;
+            line-height: 1.7;
+        }
+
+        /* Footer Styles */
+        footer {
+            background: rgba(11, 36, 71, 0.3);
+            backdrop-filter: blur(10px);
+            padding: var(--spacing-md) 0;
+            text-align: center;
+            margin-top: auto;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                gap: var(--spacing-md);
+            }
+
+            nav {
+                flex-direction: column;
+                width: 100%;
+            }
+
+            .nav-btn {
+                text-align: center;
+            }
+
+            .logo h1 {
+                font-size: 2.2rem;
+            }
+
+            .tagline {
+                margin-left: 20px;
+                padding-left: 10px;
+            }
+
+            .hero {
+                padding: var(--spacing-lg);
+            }
+
+            .hero h2 {
+                font-size: 2rem;
+            }
+
+            .features {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <div class="container header-content">
+            <div class="logo">
+                <h1>Game Plan</h1>
+                <div class="tagline">Where Sports Meets Strategy</div>
+            </div>
+            <nav>
+                <a href="/login" class="nav-btn">Login</a>
+                <a href="/signup" class="nav-btn">Sign Up</a>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <div class="container">
+            <section class="hero">
+                <h2>Welcome to Game Plan</h2>
+                <p>Experience seamless sports session management with our innovative platform. Create, join, and
+                    organize sports activities with ease.</p>
+            </section>
+
+            <section class="features">
+                <div class="feature-card">
+                    <h3>For Organizers</h3>
+                    <p>Powerful tools to manage sports sessions, track activities, and generate comprehensive reports
+                        with ease.</p>
+                </div>
+                <div class="feature-card">
+                    <h3>For Players</h3>
+                    <p>Join sessions, manage your schedule, and connect with other players in your community
+                        effortlessly.</p>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 Game Plan. All rights reserved.</p>
+        </div>
+    </footer>
+</body>
+
+</html>

@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Session Details</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+            background-color: #f4f4f4;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 20px auto;
+            padding: 20px;
+            background: #fff;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h2 {
+            color: #333;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .session-details {
+            margin-bottom: 20px;
+        }
+
+        .session-details p {
+            margin: 10px 0;
+            padding: 8px;
+            background: #f9f9f9;
+            border-radius: 4px;
+        }
+
+        .session-details strong {
+            color: #444;
+            margin-right: 10px;
+        }
+
+        .btn {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            background: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            margin-top: 10px;
+        }
+
+        .btn:hover {
+            background: #45a049;
+        }
+
+        .btn.cancel {
+            background: #f44336;
+        }
+
+        .btn.cancel:hover {
+            background: #da190b;
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 20px;
+            color: #666;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                margin: 10px;
+                padding: 15px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <%- include('../partials/navbar') %>
+
+        <div class="container">
+            <h2>Session Details</h2>
+            <div class="session-details">
+                <p><strong>Sport:</strong>
+                    <%= session.sport.name %>
+                </p>
+                <p><strong>Location:</strong>
+                    <%= session.location %>
+                </p>
+                <p><strong>Start Time:</strong>
+                    <%= session.startTime %>
+                </p>
+                <p><strong>End Time:</strong>
+                    <%= session.endTime %>
+                </p>
+            </div>
+
+            <% if (user.role==='player' ) { %>
+                <% if (session.players.includes(user.id)) { %>
+                    <form action="/session/<%= session.id %>/cancel" method="POST">
+                        <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+                        <button type="submit" class="btn cancel">Cancel Session</button>
+                    </form>
+                    <% } else { %>
+                        <form action="/session/<%= session.id %>/join" method="POST">
+                            <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+                            <button type="submit" class="btn">Join Session</button>
+                        </form>
+                        <% } %>
+                            <% } %>
+        </div>
+
+        <footer>
+            <p>&copy; 2025 Session Platform</p>
+        </footer>
+</body>
+
+</html>

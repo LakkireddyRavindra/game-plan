@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <meta name="csrf-token" content="<%= csrfToken %>">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #a0e9ff, #89cff0);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            position: relative;
+        }
+
+        .container {
+            background: rgba(255, 255, 255, 0.3);
+            backdrop-filter: blur(15px);
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            width: 380px;
+            z-index: 2;
+            position: relative;
+        }
+
+        h2 {
+            color: #003366;
+            margin-bottom: 20px;
+            font-size: 1.8rem;
+            font-weight: bold;
+        }
+
+        .error {
+            color: #ff4d4d;
+            background: rgba(255, 0, 0, 0.2);
+            padding: 10px;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            font-weight: bold;
+        }
+
+        input,
+        button {
+            width: 100%;
+            padding: 12px;
+            margin: 12px 0;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+        }
+
+        input {
+            background: rgba(255, 255, 255, 0.9);
+            color: #003366;
+            outline: none;
+            transition: 0.3s ease-in-out;
+        }
+
+        input:focus {
+            background: rgba(255, 255, 255, 1);
+            box-shadow: 0 0 8px rgba(0, 51, 102, 0.5);
+        }
+
+        button {
+            background: linear-gradient(45deg, #00509d, #0074d9);
+            color: white;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.3s;
+            letter-spacing: 0.5px;
+        }
+
+        button:hover {
+            background: linear-gradient(45deg, #003366, #00509d);
+            transform: scale(1.05);
+        }
+
+        p {
+            color: #003366;
+            margin-top: 12px;
+            font-size: 0.95rem;
+        }
+
+        a {
+            color: #32cd32;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h2>Login</h2>
+        <% if (errors && errors.length> 0) { %>
+            <ul class="error">
+                <% errors.forEach(function(msg) { %>
+                    <li>
+                        <%= msg %>
+                    </li>
+                    <% }); %>
+            </ul>
+            <% } %>
+                <form action="/login" method="POST">
+                    <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+                    <input type="email" name="email" placeholder="Email" required>
+                    <input type="password" name="password" placeholder="Password" required>
+                    <button type="submit">Login</button>
+                </form>
+                <p>Don't have an account? <a href="/signup">Sign up here</a></p>
+    </div>
+</body>
+
+</html>

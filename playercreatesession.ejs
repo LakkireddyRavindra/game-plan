@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Session</title>
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #74ebd5, #9face6);
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .form-container {
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(10px);
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 400px;
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 2rem;
+            color: #fff;
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            font-size: 1rem;
+            color: #fff;
+            margin-bottom: 8px;
+            text-align: left;
+        }
+
+        select, input {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 15px;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            color: #333;
+        }
+
+        input:focus, select:focus {
+            outline: none;
+            box-shadow: 0 0 8px rgba(255, 255, 255, 0.3);
+        }
+
+        button {
+            width: 100%;
+            padding: 12px;
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: #fff;
+            background: #ff7eb3;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        button:hover {
+            background: #ff4f81;
+            transform: scale(1.05);
+        }
+
+        @media (max-width: 768px) {
+            .form-container {
+                padding: 20px;
+            }
+
+            h1 {
+                font-size: 1.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="form-container">
+        <h1>Create a Session</h1>
+        <form action="/player/create-session" method="POST">
+            <label for="sportId">Sport:</label>
+            <select name="sportId" required>
+                <% sports.forEach(sport => { %>
+                    <option value="<%= sport.id %>"><%= sport.name %></option>
+                <% }) %>
+            </select>
+
+            <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+
+            <label for="location">Location:</label>
+            <input type="text" name="location" required>
+
+            <label for="startTime">Start Time:</label>
+            <input type="datetime-local" name="startTime" required>
+
+            <label for="endTime">End Time:</label>
+            <input type="datetime-local" name="endTime" required>
+
+            <label for="maxPlayers">Max Players:</label>
+            <input type="number" name="maxPlayers" required>
+
+            <button type="submit">Create Session</button>
+        </form>
+    </div>
+</body>
+</html>

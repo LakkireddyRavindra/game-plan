@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Player Dashboard</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary-dark: #0B2447;
+      --primary-medium: #19376D;
+      --primary-light: #576CBC;
+      --accent-light: #A5D7E8;
+      --text-light: #E6F4F1;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(135deg, var(--primary-dark), var(--primary-medium), var(--primary-light));
+      margin: 0;
+      padding: 0;
+      color: var(--text-light);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* Updated Navigation Styles */
+    nav {
+      background: rgba(11, 36, 71, 0.4);
+      backdrop-filter: blur(12px);
+      padding: 1rem 0;
+      position: fixed;
+      width: 100%;
+      top: 0;
+      z-index: 1000;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+      box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+    }
+
+    nav ul {
+      list-style: none;
+      padding: 0;
+      display: flex;
+      justify-content: flex-end;
+      /* Align items to right */
+      gap: 2rem;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding-right: 2rem;
+      /* Add some padding from right edge */
+    }
+
+    nav ul li a {
+      color: var(--text-light);
+      text-decoration: none;
+      font-size: 1.1rem;
+      font-weight: 500;
+      transition: all 0.3s ease;
+      position: relative;
+    }
+
+    nav ul li a::after {
+      content: '';
+      position: absolute;
+      width: 0;
+      height: 2px;
+      bottom: -4px;
+      left: 0;
+      background-color: var(--accent-light);
+      transition: width 0.3s ease;
+    }
+
+    nav ul li a:hover::after {
+      width: 100%;
+    }
+
+    nav ul li a:hover {
+      color: var(--accent-light);
+    }
+
+    /* Updated responsive styles */
+    @media (max-width: 768px) {
+      nav ul {
+        justify-content: center;
+        padding-right: 0;
+        gap: 1.5rem;
+      }
+    }
+
+    /* Main Content */
+    main {
+      margin-top: 100px;
+      padding: 2rem;
+      flex: 1;
+    }
+
+    h1 {
+      text-align: center;
+      font-size: 2.5rem;
+      margin: 2rem 0;
+      color: var(--accent-light);
+      text-shadow: 2px 2px 10px rgba(165, 215, 232, 0.3);
+    }
+
+    /* Enhanced Sections */
+    section {
+      max-width: 1200px;
+      margin: 2rem auto;
+      padding: 2rem;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 20px;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+      backdrop-filter: blur(12px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    section h2 {
+      color: var(--accent-light);
+      margin-bottom: 1.5rem;
+      font-size: 1.8rem;
+      text-shadow: 2px 2px 10px rgba(165, 215, 232, 0.3);
+    }
+
+    .session-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .session-card {
+      background: rgba(255, 255, 255, 0.1);
+      padding: 1.5rem;
+      border-radius: 15px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+      backdrop-filter: blur(12px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      transition: all 0.3s ease;
+    }
+
+    .session-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+    }
+
+    .session-card h3 {
+      color: var(--accent-light);
+      margin-bottom: 1rem;
+      font-size: 1.3rem;
+    }
+
+    .session-card p {
+      margin: 0.5rem 0;
+      font-size: 1rem;
+      color: var(--text-light);
+    }
+
+    .action-btn {
+      background: linear-gradient(90deg, #ff4b2b, #ff416c);
+      color: white;
+      border: none;
+      padding: 0.8rem 1.5rem;
+      border-radius: 25px;
+      cursor: pointer;
+      font-size: 1rem;
+      transition: all 0.3s ease;
+      width: 100%;
+      margin-top: 1rem;
+      font-weight: 500;
+      box-shadow: 0 4px 15px rgba(255, 75, 43, 0.3);
+    }
+
+    .action-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(255, 75, 43, 0.4);
+      background: linear-gradient(90deg, #ff416c, #ff4b2b);
+    }
+
+    .create-session-btn {
+      background: linear-gradient(90deg, #00c6ff, #0072ff);
+      color: white;
+      text-decoration: none;
+      padding: 1rem 2rem;
+      border-radius: 25px;
+      display: inline-block;
+      margin-top: 1.5rem;
+      font-weight: 500;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 15px rgba(0, 198, 255, 0.3);
+    }
+
+    .create-session-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(0, 198, 255, 0.4);
+      background: linear-gradient(90deg, #0072ff, #00c6ff);
+    }
+
+    /* Enhanced Footer */
+    footer {
+      background: rgba(11, 36, 71, 0.4);
+      backdrop-filter: blur(12px);
+      padding: 1rem;
+      text-align: center;
+      border-top: 1px solid rgba(255, 255, 255, 0.15);
+      margin-top: auto;
+    }
+  </style>
+</head>
+
+<body>
+  <nav>
+    <ul>
+      <li><a href="/">Home</a></li>
+      <li><a href="/player/dashboard">Dashboard</a></li>
+      <li><a href="/player/profile">Profile</a></li>
+      <li><a href="/">Logout</a></li>
+    </ul>
+  </nav>
+
+  <main>
+    <h1>Welcome to Player Dashboard</h1>
+
+    <section>
+      <h2>Sessions Created by Others</h2>
+      <div class="session-container">
+        <% otherSessions.forEach(session=> { %>
+          <div class="session-card">
+            <h3>
+              <%= session.sport.name %> - <%= session.location %>
+            </h3>
+            <p>Start Time: <%= session.startTime %>
+            </p>
+            <p>Available Spots: <%= session.availableSpots %>
+            </p>
+            <% if (session.availableSpots> 0) { %>
+              <form action="/player/join-session/<%= session.id %>" method="POST">
+                <!-- CSRF Token to protect from CSRF attacks -->
+                <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+                
+                <!-- Submit button to join the session -->
+                <button type="submit" class="action-btn">Join Session</button>
+              </form>
+              
+              <% } else { %>
+                <p>Session is full</p>
+                <% } %>
+          </div>
+          <% }) %>
+      </div>
+    </section>
+
+    <section>
+      <h2>Your Created Sessions</h2>
+      <div class="session-container">
+        <% createdSessions.forEach(session=> { %>
+          <div class="session-card">
+            <h3>
+              <%= session.sport.name %> - <%= session.location %>
+            </h3>
+            <p>Available Spots: <%= session.availableSpots %>
+            </p>
+            <form action="/player/delete-session/<%= session.id %>" method="POST">
+              <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+              <button type="submit" class="action-btn">Delete Session</button>
+            </form>
+          </div>
+          <% }) %>
+      </div>
+      <a href="/player/create-session" class="create-session-btn">Create New Session</a>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 Game Plan. All rights reserved.</p>
+  </footer>
+
+
+</body>
+
+</html>
